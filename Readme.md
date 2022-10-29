@@ -8,23 +8,24 @@ Getopt doesn't allow you to put options after arguments. I think that requiremen
 Requires a C++17-compliant compiler. It makes frequent use of the language's features, including optionals, vectors, maps, lambdas, all that fun stuff. It is very much intended for modern C++ commandline tools and not for embedded systems that might require an older compiler version.
 
 ## What does this support?
-Boolean option flags and string arguments, as well as an "executor" that allows you to pass lambdas for option flags. Also automatically generates help. That's it.
+Boolean option flags and string arguments, as well as an "executor" that can be executed immediately after function processing. Also automatically generates help. That's it.
 
 ```c++
+using O = SSCO::Option;
+
 SSCO::Options options({
-    {
+    O{
         "version", // Long Name
         'V', // Short Name
         "Show the current version of this app.", // Description
         false, // Has Argument
-        [&](){std::cout << "0.1.1" << std::endl; exit(0);} // If it doesn't have an argument, lambda executor
+        [&](SSCO::Result &_){std::cout << "0.1.1" << std::endl; exit(0);} // Lambda executor
     },
-    {
+    O{
         "count",
         'c',
         "Count",
-        true,
-        std::nullopt
+        true
     }
 });
 
@@ -39,6 +40,9 @@ if (opts.has_value()) {
 
 ## Wasn't this just a gist a while back?
 Yes.
+
+## Wasn't this also header-only a while back?
+Also yes.
 
 # License
 The Unlicense public domain dedication/license. Check 'Unlicense'. A link back would be nice though.
