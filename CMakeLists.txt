@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(include)
-
 add_library(ssco lib/ssco.cpp)
+target_include_directories(ssco INTERFACE include)
 
 if (SSCO_TEST)
     add_executable(ssco_example example.cpp)
