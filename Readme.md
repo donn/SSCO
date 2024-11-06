@@ -1,8 +1,8 @@
 # Stupid Simple CPP Opts
-A disgusting yet effective single header for commandline option processing in C++.
+A disgusting yet effective tiny library for commandline option processing in C++.
 
 ## Why?
-Getopt doesn't allow you to put options after arguments. I think that requirement is kinda archaic. Also, getopt-long isn't portable, meaning that you're expected to just forget about long arguments on the BSDs and macOS. Oh, and on those platforms, you have to use the traditional UNIX flags-first paradigm- `program input -o output` is invalid for example.
+The UNIX standard getopt doesn't allow you to put options after arguments. The GNU `getopt` extensions are not portable, and the BSDs/macOS don't even allow you to have long flags or put flags after arguments. This has resulted in a number of bugs with building cross-platform scripts based on C++ programs.
 
 ## How?
 Requires a C++17-compliant compiler. It makes frequent use of the language's features, including optionals, vectors, maps, lambdas, all that fun stuff. It is very much intended for modern C++ commandline tools and not for embedded systems that might require an older compiler version.
